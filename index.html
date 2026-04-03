@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Charset para soporte de caracteres especiales -->
+    <meta charset="UTF-8">
+    <!-- Viewport para diseño responsivo en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon de la página -->
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKYVtj4MVufLAhL7TCmbhbDdHg_37-pY68QQ&s" type="image/x-icon">
+    <!-- Título de la página que aparece en la pestaña del navegador -->
+    <title>Anime Legacy | La Edad de Oro (2005 - 2010)</title>
+
+    <!-- CDN de Bootstrap para estilos y componentes predefinidos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fuentes de Google: Inter para cuerpo y Playfair Display para títulos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Estilos CSS personalizados para el tema oscuro y animaciones -->
+    <style>
+        /* Variables CSS para colores y estilos globales - facilita cambios consistentes */
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-surface: #1a1f3a;
+            --bg-card: #0f1425;
+            --accent-primary: #00d9ff;
+            --accent-secondary: #ff006e;
+            --accent-tertiary: #8338ec;
+            --accent-warning: #ffb703;
+            --text-main: #c5c6c7;
+            --text-light: #ffffff;
+            --text-muted: #888;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 48px rgba(0, 217, 255, 0.1);
+        }
+
+        /* Reset global - elimina márgenes y rellenos por defecto */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos del cuerpo - fondo oscuro y tipografía */
+        body {
+            background-image: url('https://i.pinimg.com/736x/a6/e2/bd/a6e2bdae307c09f0afe36090b6ca3626.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: var(--bg-dark);
+            /* Capa oscura superpuesta para mejor legibilidad */
+            position: relative;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Overlay oscuro para mejorar legibilidad sobre el fondo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(13, 17, 48, 0.9) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Títulos - color claro y peso pesado */
+        h1, h2, h3, h4, h5 {
+            color: var(--text-light);
+            font-weight: 800;
+        }
+
+        /* Enlaces - sin subrayado y transición suave */
+        a {
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* SECCIÓN HERO - Introducción atractiva */
+        .hero-section {
+            /* Posicionamiento y dimensiones */
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            /* Fondo con gradiente y imagen de soporte */
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.9) 50%, rgba(131, 56, 236, 0.05) 100%),
+                        url('https://images.unsplash.com/photo-1578926314433-c6e7ad7eb744?auto=format&fit=crop&w=1920&q=80') center/cover;
+            background-attachment: fixed;
+            /* Fija el fondo mientras se hace scroll */
+            overflow: hidden;
+        }
+
+        /* Efecto de overlay radial para dar profundidad - pseudoelemento */
+        .hero-section::before {
+            /* Pseudoelemento para efectos visuales sin afectar HTML */
+            content: '';
+            position: absolute;
+            inset: 0;
+            /* Radiantes de color: cyan acá arriba, púrpura abajo */
+            background: radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(131, 56, 236, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            /* No interfiere con interacciones */
+        }
+
+        /* Contenedor del contenido del hero */
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            /* Está encima del overlay */
+            position: relative;
+        }
+
+        /* Título principal del hero */
+        .hero-title {
+            font-family: var(--font-serif);
+            /* Fuente elegante y serif */
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            /* Tamaño responsivo entre 2.5rem y 5rem */
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+            /* Espaciado negativo para ajuste visual */
+            text-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            /* Sombra de texto para legibilidad */
+            line-height: 1.1;
+        }
+
+        /* Efecto gradiente en el span del título */
+        .hero-title span {
+            background: linear-gradient(90deg, #00d9ff 0%, #8338ec 100%);
+            /* Gradiente cyan a púrpura */
+            -webkit-background-clip: text;
+            /* Aplicar gradiente al texto */
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Subtítulo del hero */
+        .hero-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: #a8aab0;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* BARRA DE FILTROS - Sticky y elegante */
+        .filter-container {
+            /* Fondo con gradiente */
+            background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(26, 31, 58, 0.8) 100%);
+            padding: 1.5rem 0;
+            position: sticky;
+            /* Se queda fijo al hacer scroll */
+            top: 0;
+            z-index: 1000;
+            /* Encima de todo */
+            backdrop-filter: blur(10px);
+            /* Efecto blur para vidrio esmerilado */
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        /* Botones de filtro - interactivos */
+        .filter-btn {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 0.65rem 1.5rem;
+            border-radius: 30px;
+            /* Completamente redondeado */
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 0.35rem;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+        }
+
+        /* Estado hover del botón de filtro */
+        .filter-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+        }
+
+        /* Estado activo del botón de filtro */
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            color: var(--bg-dark);
+            border-color: transparent;
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.4);
+            font-weight: 700;
+        }
+
+        /* Contenedor main - espaciado */
+        main {
+            padding: 4rem 0;
+        }
+
+        /* Títulos de secciones */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            /* Espacio para línea vertical */
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Línea vertical antes del título de sección */
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            border-radius: 2px;
+        }
+
+        /* TARJETA DE ANIME - El elemento principal */
+        .anime-card {
+            /* Fondo con gradiente sutil */
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(15, 20, 37, 0.8) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Efecto hover de la tarjeta */
+        .anime-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            /* Sube y agranda ligeramente */
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Imagen de portada del anime */
+        .anime-cover {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            /* Proporción de imagen típica de anime */
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.95);
+        }
+
+        /* Efecto zoom de imagen al hover */
+        .anime-card:hover .anime-cover {
+            transform: scale(1.08);
+            filter: brightness(1.05);
+        }
+
+        /* Cuerpo de la tarjeta - contiene información */
+        .card-body {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            /* Expande para llenar espacio */
+        }
+
+        /* Badge de categoría/género */
+        .badge-genre {
+            background: rgba(0, 217, 255, 0.12);
+            color: var(--accent-primary);
+            border: 1px solid rgba(0, 217, 255, 0.25);
+            font-weight: 500;
+            font-size: 0.75rem;
+            margin-right: 0.4rem;
+            margin-bottom: 0.75rem;
+            padding: 0.4em 0.75em;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        /* Título del anime en la tarjeta */
+        .anime-title {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* Máximo 2 líneas */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.3;
+        }
+
+        /* Metadatos: año y temporada */
+        .anime-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Descripción del anime */
+        .anime-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+            flex-grow: 1;
+            /* Expande para rellenar espacio disponible */
+        }
+
+        /* Justificación/razón por la que es una obra maestra */
+        .anime-justification {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--accent-primary);
+            background: rgba(0, 217, 255, 0.08);
+            padding: 0.9rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent-primary);
+            line-height: 1.5;
+        }
+
+        /* Selector desplegable para "Mejor Anime" */
+        .best-anime-selector {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .best-anime-selector label {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .best-anime-selector select {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(26, 31, 58, 0.95) 100%);
+            color: var(--text-light);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            min-width: 300px;
+        }
+
+        .best-anime-selector select:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+        }
+
+        .best-anime-selector select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .best-anime-selector select option {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        /* Botón de trailer */
+        .btn-trailer {
+            background: linear-gradient(135deg, transparent 0%, transparent 100%);
+            color: var(--text-light);
+            border: 2px solid var(--accent-primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            transition: var(--transition);
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        /* Hover del botón trailer */
+        .btn-trailer:hover {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            color: var(--bg-dark);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Ícono de play */
+        .play-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* FOOTER - Información adicional */
+        footer {
+            background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(15, 20, 37, 0.95) 100%);
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
+            color: var(--text-main);
+        }
+
+        /* Grid del footer */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Encabezado de sección del footer */
+        .footer-section h3 {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Línea decorativa debajo del encabezado del footer */
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-primary);
+        }
+
+        /* Enlaces del footer */
+        .footer-link {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        /* Hover de enlaces del footer */
+        .footer-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(4px);
+        }
+
+        /* Contenedor de iconos sociales */
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        /* Ícono social */
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            transition: var(--transition);
+        }
+
+        /* Hover de ícono social */
+        .social-icon:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        /* Parte inferior del footer */
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        /* Párrafos del footer */
+        .footer-bottom p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Logo del footer */
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-tertiary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* RESPONSIVIDAD - Estilos para dispositivos pequeños */
+        @media (max-width: 768px) {
+            /* Hero en móvil */
+            .hero-section {
+                min-height: 70vh;
+                padding: 4rem 1rem;
+            }
+
+            /* Título en móvil */
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            /* Footer grid en móvil */
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Footer bottom en móvil */
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            /* Selector en móvil */
+            .best-anime-selector select {
+                min-width: 100%;
+            }
+        }
+
+        /* Clase oculta para cards no mostradas */
+        .d-none {
+            display: none !important;
+        }
+
+        /* Animación de carga suave */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anime-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECCIÓN HERO - Presentación principal -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <!-- Título principal con gradiente -->
+            <h1 class="hero-title">La Edad de Oro del Anime<br><span>2005 — 2010</span></h1>
+            <!-- Subtítulo descriptivo -->
+            <p class="hero-subtitle">
+                Una década que transformó la industria del anime para siempre. Desde épicas batallas de shonen hasta historias románticas profundas, 
+                experiencias seinen contemplativas y thrillers psicológicos. Descubre las obras maestras verificadas que marcaron el estándar de calidad del siglo XXI.
+            </p>
+        </div>
+    </header>
+
+    <!-- BARRA DE FILTROS - Navegación por categoría de anime -->
+    <nav class="filter-container">
+        <div class="container">
+            <!-- Espacios entre botones con d-flex y justify-content-center -->
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <!-- Botón "Todos" - muestra todos los animes -->
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <!-- Botón "Shonen" - animes dirigidos a adolescentes varones -->
+                <button class="filter-btn" data-filter="shonen">Shonen</button>
+                <!-- Botón "Seinen" - animes para hombres jóvenes/adultos -->
+                <button class="filter-btn" data-filter="seinen">Seinen</button>
+                <!-- Botón "Shoujo" - animes dirigidos a adolescentes mujeres -->
+                <button class="filter-btn" data-filter="shoujo">Shoujo</button>
+                <!-- Botón "Misterio/Thriller" - suspenso y misterio -->
+                <button class="filter-btn" data-filter="misterio">Misterio</button>
+                <!-- Botón "Sci-Fi/Mecha" - ciencia ficción y mechas -->
+                <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container">
+
+        <!-- SELECTOR DE MEJOR ANIME - Desplegable interactivo -->
+        <section class="best-anime-selector mt-5 mb-5">
+            <!-- Etiqueta del selector -->
+            <label for="best-anime-dropdown">Selecciona el mejor anime según tu gusto:</label>
+            <!-- Dropdown con opciones de animes -->
+            <select id="best-anime-dropdown">
+                <option value="">-- Elige un anime --</option>
+                <option value="fma-brotherhood">Fullmetal Alchemist: Brotherhood - La obra maestra definitiva</option>
+                <option value="code-geass">Code Geass - El thriller estratégico perfecto</option>
+                <option value="death-note">Death Note - El suspenso psicológico que cambió todo</option>
+                <option value="clannad">Clannad: After Story - La historia de amor más emocional</option>
+                <option value="mushishi">Mushishi - Contemplación y belleza sin igual</option>
+                <option value="gurren-lagann">Tengen Toppa Gurren Lagann - La épica definitiva</option>
+                <option value="one-piece">One Piece - La aventura que trasciende generaciones</option>
+                <option value="soul-eater">Soul Eater - Acción y estilo incomparables</option>
+            </select>
+        </section>
+
+        <!-- SECCIÓN SHONEN - Animes para adolescentes varones, acción y amistad -->
+        <section class="anime-section mb-5" data-section-genres="shonen">
+            <!-- Título de sección con línea decorativa -->
+            <h2 class="section-title">Shonen</h2>
+
+            <div class="row g-4">
+
+                <!-- FULLMETAL ALCHEMIST: BROTHERHOOD -->
+                <!-- Anime de alquimia, acción y drama profundo -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <!-- Div contenedor para imagen con overflow hidden -->
+                        <div class="position-relative overflow-hidden">
+                            <!-- Imagen de portada del anime - fuente: MyAnimeList oficial -->
+                            <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/Fullmetal-alchemist-the-movie-conqueror-of-shamballa-movie-poster-2005.jpg" alt="Fullmetal Alchemist: Brotherhood" class="anime-cover">
+                        </div>
+                        <!-- Cuerpo de la tarjeta con información del anime -->
+                        <div class="card-body">
+                            <!-- Badges de categoría/género -->
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Acción</span>
+                            </div>
+                            <!-- Título del anime con soporte para 2 líneas -->
+                            <h3 class="anime-title">Fullmetal Alchemist: Brotherhood</h3>
+                            <!-- Meta información: temporada y año -->
+                            <div class="anime-meta">Primavera 2009 • 64 episodios</div>
+                            <!-- Descripción sinóptica del anime -->
+                            <p class="anime-desc">Dos hermanos buscan la Piedra Filosofal para restaurar sus cuerpos tras un desastroso intento de alquimia prohibida. Una jornada de redención y sacrificio.</p>
+                            <!-- Justificación de por qué es una obra maestra -->
+                            <div class="anime-justification">Considerado unánimemente como uno de los mejores animes de la historia por su ritmo perfecto, personajes memorables y cierre narrativo magistral.</div>
+                            <!-- Botón de trailer con ícono de play -->
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=--IcmZkvL0Q" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NARUTO: SHIPPUDEN -->
+                <!-- Anime ninja con combates épicos y desarrollo de personajes -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNTk3MDA1ZjAtNTRhYS00YzNiLTgwOGEtYWRmYTQ3NjA0NTAwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Naruto: Shippuden" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Acción</span>
+                            </div>
+                            <h3 class="anime-title">Naruto: Shippuden</h3>
+                            <div class="anime-meta">Febrero 2007 • 500 episodios</div>
+                            <p class="anime-desc">Naruto continúa su viaje para salvar a Sasuke y proteger el mundo ninja de amenazas catastróficas que acechan en la sombra.</p>
+                            <div class="anime-justification">La continuación que superó las expectativas: batallas legendarias, personajes complejos y una narrativa que cautivó a millones de fans.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=H3PUDLhfXkQ" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CODE GEASS: LELOUCH OF THE REBELLION -->
+                <!-- Anime sobre poder sobrenatural, estrategia y cambio del mundo -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNTk4MWYwNmUtODFjNC00NWJhLWExNGYtMGU4YmRlNzEwOTY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Code Geass" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Mecha</span>
+                            </div>
+                            <h3 class="anime-title">Code Geass: Lelouch</h3>
+                            <div class="anime-meta">Octubre 2006 • 50 episodios</div>
+                            <p class="anime-desc">Un príncipe exiliado obtiene el poder de la obediencia absoluta y lidera una rebelión contra el Imperio Britannia usando estrategia y astucia.</p>
+                            <div class="anime-justification">Aclamado por sus giros de guion brillantes, estrategias políticas complejas y un final que redefinió el género de mecha.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=O9Rdqm_74C0" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SOUL EATER -->
+                <!-- Anime sobre cazadores de almas, acción y Halloween -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNTJiOWM5NGMtZTdhYi00MmY3LTlhZGYtMjMwYTk2MTI4NGJlXkEyXkFqcGc@._V1_QL75_UY281_CR5,0,190,281_.jpg" alt="Soul Eater" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Acción</span>
+                            </div>
+                            <h3 class="anime-title">Soul Eater</h3>
+                            <div class="anime-meta">Abril 2008 • 51 episodios</div>
+                            <p class="anime-desc">Estudiantes de la academia Shibusen deben recolectar almas malvadas usando a compañeros que se transforman en armas demoníacas.</p>
+                            <div class="anime-justification">Destacado por su estética única inspirada en Halloween, fluida animación de combates e inolvidable banda sonora original.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=-60dDEJiDIs" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TENGEN TOPPA GURREN LAGANN -->
+                <!-- Anime mecha épico sobre superar límites -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMGJlODA2ZmItOTRiZS00NWM5LWJlNTQtYzI5MTNiZjA2MGFjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Tengen Toppa Gurren Lagann" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Mecha</span>
+                            </div>
+                            <h3 class="anime-title">Tengen Toppa Gurren Lagann</h3>
+                            <div class="anime-meta">Septiembre 2007 • 27 episodios</div>
+                            <p class="anime-desc">En un futuro donde la humanidad vive bajo tierra, dos jóvenes encuentran un mecha que los llevará a perforar los cielos y superar cualquier limitación.</p>
+                            <div class="anime-justification">Un hito de la animación de Studio Gainax que redefinió el género mecha con su escala de acción épica, determinación de personajes y filosofía inspiradora.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=yMYEyoTRSbE" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FAIRY TAIL -->
+                <!-- Anime sobre magia, amistad y poder de la determinación -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://static.wikia.nocookie.net/dublagem/images/8/82/Fairy_Tail_Capa.jpg/revision/latest?cb=20210516012300&path-prefix=pt-br" alt="Fairy Tail" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Magia</span>
+                            </div>
+                            <h3 class="anime-title">Fairy Tail</h3>
+                            <div class="anime-meta">Octubre 2009 • 328 episodios</div>
+                            <p class="anime-desc">Natsu busca a su amigo Igneel mientras se unea la catedral mágica Fairy Tail en una aventura llena de magia, amistad y poder de corazón.</p>
+                            <div class="anime-justification">Una serie que capturó corazones con su énfasis en la amistad, personajes carismáticos y batallas mágicas espectaculares.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=DDXd4o_XBeE" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- KATEKYOU HITMAN REBORN! -->
+                <!-- Anime sobre la sucesión de un jefe mafia -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://a.storyblok.com/f/178900/1200x848/9dd5235586/katekyo-hitman-reborn-20th-anniversary-visual.jpg/m/1200x0/filters:quality(95)format(webp)" alt="Katekyou Hitman Reborn!" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Acción</span>
+                            </div>
+                            <h3 class="anime-title">Katekyou Hitman Reborn!</h3>
+                            <div class="anime-meta">Octubre 2006 • 203 episodios</div>
+                            <p class="anime-desc">Un estudiante ordinario es elegido para ser el décimo padrino de la familia mafia Vongola, transformando su vida en una de batallas continuas.</p>
+                            <div class="anime-justification">Serie que combina entretenimiento, personajes memorables y evolución constante, ganando millones de seguidores alrededor del mundo.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=Re0qhRVaX4k" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- EYESHIELD 21 -->
+                <!-- Anime sobre fútbol americano y determinación -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BYTI4MzQ0MDItZWE2Yi00YWU3LThjNTEtNGU0YjEyYzE3YjVlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Eyeshield 21" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Deportes</span>
+                            </div>
+                            <h3 class="anime-title">Eyeshield 21</h3>
+                            <div class="anime-meta">Primavera 2005 • 145 episodios</div>
+                            <p class="anime-desc">Un estudiante tímido se convierte en running back del equipo de fútbol americano, descubriendo su verdadero potencial y espíritu de lucha bajo el icónico número 21.</p>
+                            <div class="anime-justification">Pionero indiscutible en anime de deportes durante la era dorada: inspirador en su narrativa, adictivo en su ejecución y fundamental en la popularización del género.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=jJCeB-_79aw" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BAKUGAN -->
+                <!-- Anime sobre cartas y batallas de criaturas -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BYzdjY2VmZDgtMWFlOS00NjAyLWIyYzQtMjNjNzY3YTgxODRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Bakugan" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Aventura</span>
+                            </div>
+                            <h3 class="anime-title">Bakugan Battle Brawlers</h3>
+                            <div class="anime-meta">Primavera 2009 • 52 episodios</div>
+                            <p class="anime-desc">Un grupo de amigos descubre que sus cartas de juego contienen criaturas reales llamadas Bakugan, entablando batallas épicas en dimensiones alternativas.</p>
+                            <div class="anime-justification">Fenómeno generacional que combinó juego de cartas con anime memorable, ofreciendo entretenimiento con personajes camaleónicos y batallas de Bakugan espectaculares.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=1g8NPA0mLsw" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- GINTAMA -->
+                <!-- Anime sobre samurais y comedias shonen -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shonen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://static.wikia.nocookie.net/doblaje/images/6/64/Gintama_2006.jpg/revision/latest?cb=20201102011441&path-prefix=es" alt="Gintama" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shonen</span>
+                                <span class="badge-genre">Comedia</span>
+                            </div>
+                            <h3 class="anime-title">Gintama</h3>
+                            <div class="anime-meta">Abril 2006 • 201 episodios</div>
+                            <p class="anime-desc">Un samurái de cabello plateado lidera un equipo de misfits en la época Edo, donde enfrentan aliens, misterios sobrenaturales y situaciones absurdamente cómicas.</p>
+                            <div class="anime-justification">Obra maestra del género shonen que reinventó la comedia anime con su mezcla perfecta de humor, acción épica y momentos emocionales profundos.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=aCHjExP6tj4" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN SEINEN - Animes para adultos jóvenes, dramáticos y contemplativas -->
+        <section class="anime-section mb-5" data-section-genres="seinen">
+            <!-- Título de sección -->
+            <h2 class="section-title">Seinen</h2>
+
+            <div class="row g-4">
+
+                <!-- MUSHISHI -->
+                <!-- Anime contemplativo sobre seres misteriosos -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="seinen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMmUxZjA2ZTgtYmIzNy00YWE0LTliMjktZGY5NTQ5ZDEzYmM1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Mushishi" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Seinen</span>
+                                <span class="badge-genre">Misterio</span>
+                            </div>
+                            <h3 class="anime-title">Mushishi</h3>
+                            <div class="anime-meta">Octubre 2005 • 26 episodios</div>
+                            <p class="anime-desc">Un viajero investiga fenómenos causados por Mushi, criaturas primitivas que interfieren en el mundo humano de formas misteriosas y hermosas.</p>
+                            <div class="anime-justification">Una obra maestra de la contemplación: atmósfera cautivadora, narrativa episódica perfecta y una dirección artística incomparable que define Seinen.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=MCfARhvKE3A" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BACCANO! -->
+                <!-- Anime sobre la vida en el siglo de la prohibición -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="seinen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMDdkYjc2MmQtNTJlZS00ZDM4LWI0ZTYtZGNkZTgzZTg0YTNmXkEyXkFqcGc@._V1_.jpg" alt="Baccano!" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Seinen</span>
+                                <span class="badge-genre">Acción</span>
+                            </div>
+                            <h3 class="anime-title">Baccano!</h3>
+                            <div class="anime-meta">Julio 2007 • 16 episodios</div>
+                            <p class="anime-desc">Historias entrelazadas de mafiosos, alquimistas y personajes excéntricos en la Nueva York durante la Prohibición, todo conectado por la inmortalidad.</p>
+                            <div class="anime-justification">Una narrativa fragmentada brillantemente ejecutada, personajes único originales y estilo visual muy distintivo que define calidad Seinen.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=MtuNdtfMlJ0" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ONE OUTS -->
+                <!-- Anime sobre apuestas psicológicas y genio táctico -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="seinen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BZDQwZDYyODAtZWI1My00Y2NlLWFjMTItZTgxOTA1MTNjNTc3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="One Outs" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Seinen</span>
+                                <span class="badge-genre">Psicológico</span>
+                            </div>
+                            <h3 class="anime-title">One Outs</h3>
+                            <div class="anime-meta">Octubre 2008 • 25 episodios</div>
+                            <p class="anime-desc">Un experto en apuestas se infiltra en un equipo de béisbol usando su genio psicológico para manipular adversarios y ganar de formas inesperadas.</p>
+                            <div class="anime-justification">Magistral en tensión psicológica: cada episodio es un juego mental donde la victoria se define por inteligencia, no por fuerza física.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=frCs_tLwelw" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HELLSING ULTIMATE -->
+                <!-- Anime sobre vampiros y acción ultraviolenta -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="seinen">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMTI0MTUxMTc0MF5BMl5BanBnXkFtZTcwODg5NDYzMQ@@._V1_.jpg" alt="Hellsing Ultimate" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Seinen</span>
+                                <span class="badge-genre">Acción</span>
+                            </div>
+                            <h3 class="anime-title">Hellsing Ultimate</h3>
+                            <div class="anime-meta">Febrero 2006 • 10 OVAs</div>
+                            <p class="anime-desc">Un vampiro milenario sirve a la organización Hellsing, lidiando con amenazas sobrenaturales y conflictos que trascienden la humanidad.</p>
+                            <div class="anime-justification">Acción cruda y visceral, personaje protagonista icónico, y una narrativa que expande universos completos en cada episodio glorioso.</div>
+                            <div class="mt-auto" style="display: flex; gap: 0.5rem; flex-direction: column;">
+                                <a href="https://www.youtube.com/watch?v=Ps8TIHHHidU" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Trailer 1
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=TUwPcpDlq_I" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Trailer 2
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN SHOUJO - Animes dirigidos a adolescentes chicas, romance y drama -->
+        <section class="anime-section mb-5" data-section-genres="shoujo">
+            <!-- Título de sección -->
+            <h2 class="section-title">Shoujo</h2>
+
+            <div class="row g-4">
+
+                <!-- CLANNAD: AFTER STORY -->
+                <!-- Anime sobre transición a la vida adulta y familia -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shoujo">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://pics.filmaffinity.com/Clannad_After_Story_Serie_de_TV-236624552-large.jpg" alt="Clannad: After Story" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shoujo</span>
+                                <span class="badge-genre">Drama</span>
+                            </div>
+                            <h3 class="anime-title">Clannad: After Story</h3>
+                            <div class="anime-meta">Octubre 2008 • 24 episodios</div>
+                            <p class="anime-desc">La continuación sigue a Tomoya y Nagisa mientras se gradúan y enfrentan las duras realidades de la vida adulta, culminando en revelaciones devastadoras.</p>
+                            <div class="anime-justification">Ampliamente reconocido como uno de los animes más emocionalmente impactantes jamás creados; obra cumbre de Kyoto Animation.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=IecYMqp1N4k" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- TORADORA! -->
+                <!-- Anime sobre dos estudiantes incomprendidos que se aman -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shoujo">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNjEyZmRmMGYtNGY1Zi00MTFiLWE0ZTMtNzUzMWJmMTgzNWE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Toradora!" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shoujo</span>
+                                <span class="badge-genre">Romance</span>
+                            </div>
+                            <h3 class="anime-title">Toradora!</h3>
+                            <div class="anime-meta">Octubre 2008 • 25 episodios</div>
+                            <p class="anime-desc">Dos estudiantes de preparatoria con personalidades incomprendidas forman una alianza para ayudarse mutuamente, descubriendo que se aman el uno al otro.</p>
+                            <div class="anime-justification">Estándar de oro para comedias románticas escolares, destacando por desarrollo orgánico de personajes y química genuina entre protagonistas.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=ya570uUgQNc" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ANGEL BEATS! -->
+                <!-- Anime sobre almas en el limbo y redención -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shoujo">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://upload.wikimedia.org/wikipedia/pt/c/c6/Angel_Beats_poster.jpg" alt="Angel Beats!" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shoujo</span>
+                                <span class="badge-genre">Drama</span>
+                            </div>
+                            <h3 class="anime-title">Angel Beats!</h3>
+                            <div class="anime-meta">Abril 2010 • 13 episodios</div>
+                            <p class="anime-desc">En una escuela que sirve como limbo, adolescentes que murieron con arrepentimientos se rebelan contra su destino, buscando paz y comprensión.</p>
+                            <div class="anime-justification">Montaña rusa emocional que combina magistralmente comedias de instituto con reflexiones profundas sobre vida, muerte y redención.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=mpl9Gtk8MOc" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- KIMI NO TODOKE -->
+                <!-- Anime sobre una chica rechazada que encuentra amistad y amor -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="shoujo">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMDliNGUxNTEtOTE1Zi00M2U3LWE0ODktNWQxMDRhMDZiNDAyXkEyXkFqcGc@._V1_.jpg" alt="Kimi no Todoke" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Shoujo</span>
+                                <span class="badge-genre">Romance</span>
+                            </div>
+                            <h3 class="anime-title">Kimi no Todoke</h3>
+                            <div class="anime-meta">Octubre 2009 • 25 episodios</div>
+                            <p class="anime-desc">Una chica de apariencia aterradora pero corazón puro finalmente encuentra amigos y amor, descubriendo que su verdadera belleza resplandece desde adentro.</p>
+                            <div class="anime-justification">Romance shoujo sublime que captura la inocencia y pureza de la juventud, con personajes auténticos y desarrollo natural que define el género.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=_gJR6gfRYEQ" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN MISTERIO/THRILLER - Animes de suspenso y psicología -->
+        <section class="anime-section mb-5" data-section-genres="misterio">
+            <!-- Título de sección -->
+            <h2 class="section-title">Misterio & Thriller</h2>
+
+            <div class="row g-4">
+
+                <!-- DEATH NOTE -->
+                <!-- Anime clásico sobre un cuaderno que mata -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="misterio">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BYTgyZDhmMTEtZDFhNi00MTc4LTg3NjUtYWJlNGE5Mzk2NzMxXkEyXkFqcGc@._V1_.jpg" alt="Death Note" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Misterio</span>
+                                <span class="badge-genre">Thriller</span>
+                            </div>
+                            <h3 class="anime-title">Death Note</h3>
+                            <div class="anime-meta">Octubre 2006 • 37 episodios</div>
+                            <p class="anime-desc">Un estudiante brillante encuentra un cuaderno sobrenatural que le permite asesinar a cualquier persona cuyo nombre escriba, convirtiéndose en dios.</p>
+                            <div class="anime-justification">Considerado uno de los mejores thrillers psicológicos por su narrativa de juego del gato y ratón única, tensión constante e impacto cultural.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=WS6bOufNi9E" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- HIGURASHI NO NAKU KORO NI -->
+                <!-- Anime de horror psicológico y misterio -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="misterio">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNWRjOWUwMzctN2I5NC00MmQwLTk4ZWMtYjMwNjUxYjY5Yzc4XkEyXkFqcGc@._V1_.jpg" alt="Higurashi no Naku Koro ni" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Misterio</span>
+                                <span class="badge-genre">Horror</span>
+                            </div>
+                            <h3 class="anime-title">Higurashi no Naku Koro ni</h3>
+                            <div class="anime-meta">Abril 2006 • 26 episodios</div>
+                            <p class="anime-desc">En el pacífico pueblo de Hinamizawa, un grupo de amigos se ve atrapado en un ciclo eterno de paranoia, desconfianza y asesinatos rituales.</p>
+                            <div class="anime-justification">Obra maestra del horror psicológico que contrasta un inocente diseño visual con narrativa sumamente compleja y aterradora.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=ZfH0WHJ_-zA" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BAKEMONOGATARI -->
+                <!-- Anime experimental sobre niñas con problemas sobrenaturales -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="misterio">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMzc2ODJmZDItNDJkYS00OWIyLTg1YWYtMmRmZjJkZDdlMTUwXkEyXkFqcGc@._V1_.jpg" alt="Bakemonogatari" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Misterio</span>
+                                <span class="badge-genre">Sobrenatural</span>
+                            </div>
+                            <h3 class="anime-title">Bakemonogatari</h3>
+                            <div class="anime-meta">Julio 2009 • 15 episodios</div>
+                            <p class="anime-desc">Koyomi Araragi, un estudiante que sobrevivió a un ataque de vampiro, ayuda a chicas a resolver problemas causados por criaturas sobrenaturales.</p>
+                            <div class="anime-justification">Revolucionó la industria con estilo visual vanguardista, diálogos intrincados llenos de ingenio y narrativa fragmentada fascinante.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=PugZi9QKL64" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN SCI-FI/MECHA - Animes de ciencia ficción y robots -->
+        <section class="anime-section mb-5" data-section-genres="scifi">
+            <!-- Título de sección -->
+            <h2 class="section-title">Sci-Fi & Mecha</h2>
+
+            <div class="row g-4">
+
+                <!-- MOBILE SUIT GUNDAM 00 -->
+                <!-- Anime mecha sobre paz mundial y conflictos -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="scifi">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BMTBiM2JkNzItNzM4Mi00N2MxLWFmYTgtNjFkMDFjZWM5NDU4XkEyXkFqcGc@._V1_.jpg" alt="Mobile Suit Gundam 00" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Sci-Fi</span>
+                                <span class="badge-genre">Mecha</span>
+                            </div>
+                            <h3 class="anime-title">Mobile Suit Gundam 00</h3>
+                            <div class="anime-meta">Octubre 2007 • 50 episodios</div>
+                            <p class="anime-desc">Una organización privada utiliza Gundams para intervenir en conflictos globales, lidiando con cuestiones de paz, guerra y justicia en el futuro.</p>
+                            <div class="anime-justification">Innovador en narrativa política compleja, personajes multidimensionales y batallas mechas que trascienden la acción física.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=yTGzkTQjGak" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- THE MELANCHOLY OF HARUHI SUZUMIYA -->
+                <!-- Anime sobre una chica que altera la realidad -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="scifi">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNTcyODQxZTQtNjBiMi00NWViLTg4YzYtNWIwZTA3ZGJiNmIzXkEyXkFqcGc@._V1_.jpg" alt="La Melancolía de Haruhi" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Sci-Fi</span>
+                                <span class="badge-genre">Comedia</span>
+                            </div>
+                            <h3 class="anime-title">La Melancolía de Haruhi</h3>
+                            <div class="anime-meta">Abril 2006 • 14 episodios</div>
+                            <p class="anime-desc">Un estudiante cínico es arrastrado a un club fundado por una chica excéntrica que altera la realidad sin saberlo, causando anomalías cósmicas.</p>
+                            <div class="anime-justification">Fenómeno cultural absoluto que definió estándares de calidad para adaptaciones de novelas ligeras y cambió la industria para siempre.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=VcXOKNzEDnA" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- EDEN OF THE EAST -->
+                <!-- Anime thriller sobre un misterio con dinero ilimitado -->
+                <article class="col-12 col-md-6 col-lg-3 anime-wrapper" data-genres="scifi">
+                    <div class="card h-100 anime-card">
+                        <div class="position-relative overflow-hidden">
+                            <img src="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/01a772e035b60cc8a6ef6235f2ab9dc3.jpg" alt="Eden of the East" class="anime-cover">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span class="badge-genre">Sci-Fi</span>
+                                <span class="badge-genre">Thriller</span>
+                            </div>
+                            <h3 class="anime-title">Eden of the East</h3>
+                            <div class="anime-meta">Marzo 2009 • 11 episodios</div>
+                            <p class="anime-desc">Un joven amnésico se despierta con un misterioso teléfono y acceso a dinero ilimitado, descubriendo que es parte de un peligroso juego de reformadores sociales.</p>
+                            <div class="anime-justification">Thriller moderno impecable que mezcla misterio, acción inteligente y temas sociales profundos con una cinematografía y narrativa excepcionales.</div>
+                            <div class="mt-auto">
+                                <a href="https://www.youtube.com/watch?v=zfQ4e1iRoak" target="_blank" rel="noopener noreferrer" class="btn-trailer">
+                                    <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Ver Trailer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER - Information and links -->
+    <footer>
+        <div class="container">
+            <!-- Grid de footer con información de diferentes secciones -->
+            <div class="footer-grid">
+                <!-- Sección: Sobre nosotros -->
+                <div class="footer-section">
+                    <h3>Sobre Anime Legacy</h3>
+                    <p>Dedicado a celebrar la edad de oro del anime (2005-2010). Una colección cuidadosamente curada de obras maestras verificadas que trasformaron la industria y dejaron un legado duradero en la cultura pop global.</p>
+                </div>
+                <!-- Sección: Categorías de anime -->
+                <div class="footer-section">
+                    <h3>Categorías</h3>
+                    <a href="#" class="footer-link">Shonen</a>
+                    <a href="#" class="footer-link">Seinen</a>
+                    <a href="#" class="footer-link">Shoujo</a>
+                    <a href="#" class="footer-link">Misterio</a>
+                    <a href="#" class="footer-link">Sci-Fi & Mecha</a>
+                </div>
+                <!-- Sección: Recursos -->
+                <div class="footer-section">
+                    <h3>Recursos</h3>
+                    <a href="#" class="footer-link">Sobre Nosotros</a>
+                    <a href="#" class="footer-link">Contacto</a>
+                    <a href="#" class="footer-link">Política de Privacidad</a>
+                    <a href="#" class="footer-link">Términos de Servicio</a>
+                </div>
+                <!-- Sección: Conectar en redes sociales -->
+                <div class="footer-section">
+                    <h3>Conecta</h3>
+                    <p>Únete a nuestra comunidad de aficionados al anime clásico.</p>
+                    <!-- Contenedor de iconos sociales -->
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" title="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Discord">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" title="MyAnimeList">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <path d="M7 7h10M7 12h10M7 17h10"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parte inferior del footer con derechos -->
+            <div class="footer-bottom">
+                <div class="footer-logo">Anime Legacy</div>
+                <p>&copy; 2024 Anime Legacy. Celebrando la edad de oro del anime. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT - Lógica de filtrado de animes -->
+    <script>
+        // Esperar a que el DOM esté completamente cargado antes de ejecutar scripts
+        document.addEventListener("DOMContentLoaded", () => {
+            // Obtener todos los botones de filtro del DOM
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            // Obtener todas las tarjetas de anime del DOM
+            const animeCards = document.querySelectorAll('.anime-wrapper');
+            // Obtener todas las secciones de anime del DOM
+            const animeSections = document.querySelectorAll('.anime-section');
+
+            // Añadir event listener a cada botón de filtro
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remover clase 'active' de todos los botones
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Añadir clase 'active' al botón clickeado
+                    btn.classList.add('active');
+
+                    // Obtener el valor del filtro del atributo data-filter
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Iterar sobre todas las tarjetas de anime
+                    animeCards.forEach(card => {
+                        // Obtener los géneros de la tarjeta desde data-genres
+                        const genres = card.getAttribute('data-genres');
+
+                        // Si el filtro es 'all' u contiene el género, mostrar la tarjeta
+                        if (filterValue === 'all' || genres.includes(filterValue)) {
+                            card.classList.remove('d-none');
+                        } else {
+                            // Sino, ocultarla
+                            card.classList.add('d-none');
+                        }
+                    });
+
+                    // Iterar sobre todas las secciones de anime
+                    animeSections.forEach(section => {
+                        // Obtener todas las tarjetas visibles en esta sección
+                        const cardsInSection = section.querySelectorAll('.anime-wrapper:not(.d-none)');
+                        // Si no hay tarjetas visibles, ocultar la sección
+                        if (cardsInSection.length === 0) {
+                            section.style.display = 'none';
+                        } else {
+                            // Sino, mostrarla
+                            section.style.display = 'block';
+                        }
+                    });
+                });
+            });
+
+            // SCRIPT para el selector de mejor anime - desplegable
+            const bestAnimeDropdown = document.getElementById('best-anime-dropdown');
+            
+            if (bestAnimeDropdown) {
+                bestAnimeDropdown.addEventListener('change', (e) => {
+                    // Obtener el valor seleccionado
+                    const selectedValue = e.target.value;
+                    
+                    // Aquí se pueden añadir lógicas adicionales según la selección
+                    if (selectedValue) {
+                        console.log('Mejor anime seleccionado:', selectedValue);
+                        // Podría mostrar una modal, cambiar estilos, etc.
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
